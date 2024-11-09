@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class MedicineDetails extends StatefulWidget {
-  const MedicineDetails(this.medicine, {Key? key}) : super(key: key);
+  const MedicineDetails(this.medicine, {super.key});
   final Medicine medicine;
 
   @override
@@ -17,7 +17,7 @@ class MedicineDetails extends StatefulWidget {
 class _MedicineDetailsState extends State<MedicineDetails> {
   @override
   Widget build(BuildContext context) {
-    final GlobalBloc _globalBloc = Provider.of<GlobalBloc>(context);
+    final GlobalBloc globalBloc = Provider.of<GlobalBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),
@@ -28,7 +28,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
           children: [
             MainSection(medicine: widget.medicine),
             ExtendedSection(medicine: widget.medicine),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: 100.w,
               height: 7.h,
@@ -40,13 +40,13 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                 onPressed: () {
                   //open alert dialog box,+global bloc, later
                   //cool its working
-                  openAlertBox(context, _globalBloc);
+                  openAlertBox(context, globalBloc);
                 },
                 child: Text(
                   'Delete',
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle1!
+                      .titleMedium!
                       .copyWith(color: kScaffoldColor),
                 ),
               ),
@@ -61,7 +61,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
   }
   //lets delete a medicine from memory
 
-  openAlertBox(BuildContext context, GlobalBloc _globalBloc) {
+  openAlertBox(BuildContext context, GlobalBloc globalBloc) {
     return showDialog(
       context: context,
       builder: (context) {
@@ -77,7 +77,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
           title: Text(
             'Delete This Reminder?',
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           actions: [
             TextButton(
@@ -86,20 +86,20 @@ class _MedicineDetailsState extends State<MedicineDetails> {
               },
               child: Text(
                 'Cancel',
-                style: Theme.of(context).textTheme.caption,
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ),
             TextButton(
               onPressed: () {
                 //global block to delete medicine,later
-                _globalBloc.removeMedicine(widget.medicine);
+                globalBloc.removeMedicine(widget.medicine);
                 Navigator.popUntil(context, ModalRoute.withName('/'));
               },
               child: Text(
                 'OK',
                 style: Theme.of(context)
                     .textTheme
-                    .caption!
+                    .bodySmall!
                     .copyWith(color: kSecondaryColor),
               ),
             ),
@@ -111,7 +111,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
 }
 
 class MainSection extends StatelessWidget {
-  const MainSection({Key? key, this.medicine}) : super(key: key);
+  const MainSection({super.key, this.medicine});
   final Medicine? medicine;
   Hero makeIcon(double size) {
     if (medicine!.medicineType == 'Bottle') {
@@ -198,8 +198,7 @@ class MainSection extends StatelessWidget {
 
 class MainInfoTab extends StatelessWidget {
   const MainInfoTab(
-      {Key? key, required this.fieldTitle, required this.fieldInfo})
-      : super(key: key);
+      {super.key, required this.fieldTitle, required this.fieldInfo});
   final String fieldTitle;
   final String fieldInfo;
   @override
@@ -213,14 +212,14 @@ class MainInfoTab extends StatelessWidget {
           children: [
             Text(
               fieldTitle,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(
               height: 0.3.h,
             ),
             Text(
               fieldInfo,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],
         ),
@@ -230,7 +229,7 @@ class MainInfoTab extends StatelessWidget {
 }
 
 class ExtendedSection extends StatelessWidget {
-  const ExtendedSection({Key? key, this.medicine}) : super(key: key);
+  const ExtendedSection({super.key, this.medicine});
   final Medicine? medicine;
   @override
   Widget build(BuildContext context) {
@@ -260,8 +259,7 @@ class ExtendedSection extends StatelessWidget {
 
 class ExtendedInfoTab extends StatelessWidget {
   const ExtendedInfoTab(
-      {Key? key, required this.fieldTitle, required this.fieldInfo})
-      : super(key: key);
+      {super.key, required this.fieldTitle, required this.fieldInfo});
   final String fieldTitle;
   final String fieldInfo;
 
@@ -276,14 +274,14 @@ class ExtendedInfoTab extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 1.h),
             child: Text(
               fieldTitle,
-              style: Theme.of(context).textTheme.subtitle2!.copyWith(
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
                     color: kTextColor,
                   ),
             ),
           ),
           Text(
             fieldInfo,
-            style: Theme.of(context).textTheme.caption!.copyWith(
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: kSecondaryColor,
                 ),
           ),

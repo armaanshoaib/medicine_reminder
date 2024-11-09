@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
 }
 
 class TopContainer extends StatelessWidget {
-  const TopContainer({Key? key}) : super(key: key);
+  const TopContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class TopContainer extends StatelessWidget {
           child: Text(
             'Worry less. \nLive healthier.',
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
         ),
         Container(
@@ -85,7 +85,7 @@ class TopContainer extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 1.h),
           child: Text(
             'Welcome to Daily Dose.',
-            style: Theme.of(context).textTheme.subtitle2,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
         SizedBox(
@@ -100,7 +100,7 @@ class TopContainer extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 1.h),
                 child: Text(
                   !snapshot.hasData ? '0' : snapshot.data!.length.toString(),
-                  style: Theme.of(context).textTheme.headline4,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               );
             }),
@@ -110,7 +110,7 @@ class TopContainer extends StatelessWidget {
 }
 
 class BottomContainer extends StatelessWidget {
-  const BottomContainer({Key? key}) : super(key: key);
+  const BottomContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +134,7 @@ class BottomContainer extends StatelessWidget {
           return Center(
             child: Text(
               'No Medicine',
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           );
         } else {
@@ -155,7 +155,7 @@ class BottomContainer extends StatelessWidget {
 }
 
 class MedicineCard extends StatelessWidget {
-  const MedicineCard({Key? key, required this.medicine}) : super(key: key);
+  const MedicineCard({super.key, required this.medicine});
   final Medicine medicine;
   //for getting the current details of the saved items
 
@@ -262,7 +262,7 @@ class MedicineCard extends StatelessWidget {
                 medicine.medicineName!,
                 overflow: TextOverflow.fade,
                 textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             SizedBox(
@@ -275,7 +275,7 @@ class MedicineCard extends StatelessWidget {
                   : "Every ${medicine.interval} hour",
               overflow: TextOverflow.fade,
               textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.caption,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),

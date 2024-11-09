@@ -15,7 +15,7 @@ import '../../common/convert_time.dart';
 import '../../models/medicine_type.dart';
 
 class NewEntryPage extends StatefulWidget {
-  const NewEntryPage({Key? key}) : super(key: key);
+  const NewEntryPage({super.key});
 
   @override
   State<NewEntryPage> createState() => _NewEntryPageState();
@@ -77,7 +77,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
                 ),
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle2!
+                    .titleMedium!
                     .copyWith(color: kOtherColor),
               ),
               const PanelTitle(
@@ -94,7 +94,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
                 ),
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle2!
+                    .titleSmall!
                     .copyWith(color: kOtherColor),
               ),
               SizedBox(
@@ -167,7 +167,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
                     child: Center(
                       child: Text(
                         'Confirm',
-                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: kScaffoldColor,
                             ),
                       ),
@@ -240,7 +240,7 @@ class _NewEntryPageState extends State<NewEntryPage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SuccessScreen()));
+                              builder: (context) => const SuccessScreen()));
                     },
                   ),
                 ),
@@ -333,27 +333,27 @@ class _NewEntryPageState extends State<NewEntryPage> {
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
 
-    for (int i = 0; i < (24 / medicine.interval!).floor(); i++) {
-      if (hour + (medicine.interval! * i) > 23) {
-        hour = hour + (medicine.interval! * i) - 24;
-      } else {
-        hour = hour + (medicine.interval! * i);
-      }
-      await flutterLocalNotificationsPlugin.showDailyAtTime(
-          int.parse(medicine.notificationIDs![i]),
-          'Reminder: ${medicine.medicineName}',
-          medicine.medicineType.toString() != MedicineType.None.toString()
-              ? 'It is time to take your ${medicine.medicineType!.toLowerCase()}, according to schedule'
-              : 'It is time to take your medicine, according to schedule',
-          Time(hour, minute, 0),
-          platformChannelSpecifics);
-      hour = ogValue;
-    }
+    // for (int i = 0; i < (24 / medicine.interval!).floor(); i++) {
+    //   if (hour + (medicine.interval! * i) > 23) {
+    //     hour = hour + (medicine.interval! * i) - 24;
+    //   } else {
+    //     hour = hour + (medicine.interval! * i);
+    //   }
+    //   await flutterLocalNotificationsPlugin.show(
+    //     int.parse(medicine.notificationIDs![i]),
+    //     'Reminder: ${medicine.medicineName}',
+    //     medicine.medicineType.toString() != MedicineType.None.toString()
+    //         ? 'It is time to take your ${medicine.medicineType!.toLowerCase()}, according to schedule'
+    //         : 'It is time to take your medicine, according to schedule',
+    //     TimeOfDay(hour, minute),
+    //   );
+    //   hour = ogValue;
+    // }
   }
 }
 
 class SelectTime extends StatefulWidget {
-  const SelectTime({Key? key}) : super(key: key);
+  const SelectTime({super.key});
 
   @override
   State<SelectTime> createState() => _SelectTimeState();
@@ -402,7 +402,7 @@ class _SelectTimeState extends State<SelectTime> {
                   : "${convertTime(_time.hour.toString())}:${convertTime(_time.minute.toString())}",
               style: Theme.of(context)
                   .textTheme
-                  .subtitle2!
+                  .titleSmall!
                   .copyWith(color: kScaffoldColor),
             ),
           ),
@@ -413,7 +413,7 @@ class _SelectTimeState extends State<SelectTime> {
 }
 
 class IntervalSelection extends StatefulWidget {
-  const IntervalSelection({Key? key}) : super(key: key);
+  const IntervalSelection({super.key});
 
   @override
   State<IntervalSelection> createState() => _IntervalSelectionState();
@@ -432,7 +432,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
         children: [
           Text(
             'Remind me every',
-            style: Theme.of(context).textTheme.subtitle2!.copyWith(
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
                   color: kTextColor,
                 ),
           ),
@@ -443,7 +443,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
             hint: _selected == 0
                 ? Text(
                     'Select an Interval',
-                    style: Theme.of(context).textTheme.caption!.copyWith(
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: kPrimaryColor,
                         ),
                   )
@@ -456,7 +456,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
                   value: value,
                   child: Text(
                     value.toString(),
-                    style: Theme.of(context).textTheme.caption!.copyWith(
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: kSecondaryColor,
                         ),
                   ),
@@ -476,7 +476,7 @@ class _IntervalSelectionState extends State<IntervalSelection> {
             _selected == 1 ? " hour" : " hours",
             style: Theme.of(context)
                 .textTheme
-                .subtitle2!
+                .titleSmall!
                 .copyWith(color: kTextColor),
           ),
         ],
@@ -487,12 +487,11 @@ class _IntervalSelectionState extends State<IntervalSelection> {
 
 class MedicineTypeColumn extends StatelessWidget {
   const MedicineTypeColumn(
-      {Key? key,
+      {super.key,
       required this.medicineType,
       required this.name,
       required this.iconValue,
-      required this.isSelected})
-      : super(key: key);
+      required this.isSelected});
   final MedicineType medicineType;
   final String name;
   final String iconValue;
@@ -542,7 +541,7 @@ class MedicineTypeColumn extends StatelessWidget {
                   name,
                   style: Theme.of(context)
                       .textTheme
-                      .subtitle2!
+                      .titleSmall!
                       .copyWith(color: isSelected ? Colors.white : kOtherColor),
                 ),
               ),
@@ -555,8 +554,7 @@ class MedicineTypeColumn extends StatelessWidget {
 }
 
 class PanelTitle extends StatelessWidget {
-  const PanelTitle({Key? key, required this.title, required this.isRequired})
-      : super(key: key);
+  const PanelTitle({super.key, required this.title, required this.isRequired});
   final String title;
   final bool isRequired;
   @override

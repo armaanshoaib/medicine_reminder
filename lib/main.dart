@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:medicine_reminder/constants.dart';
 import 'package:medicine_reminder/global_bloc.dart';
-import 'package:medicine_reminder/pages/new_entry/new_entry_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -57,32 +56,32 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             textTheme: TextTheme(
-              headline3: TextStyle(
+              displaySmall: TextStyle(
                 fontSize: 28.sp,
                 color: kSecondaryColor,
                 fontWeight: FontWeight.w500,
               ),
-              headline4: TextStyle(
+              headlineMedium: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w800,
                 color: kTextColor,
               ),
-              headline5: TextStyle(
+              headlineSmall: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w900,
                 color: kTextColor,
               ),
-              headline6: GoogleFonts.poppins(
+              titleLarge: GoogleFonts.poppins(
                 fontSize: 13.sp,
                 color: kTextColor,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 1.0,
               ),
-              subtitle1:
+              titleMedium:
                   GoogleFonts.poppins(fontSize: 15.sp, color: kPrimaryColor),
-              subtitle2:
+              titleSmall:
                   GoogleFonts.poppins(fontSize: 12.sp, color: kTextLightColor),
-              caption: GoogleFonts.poppins(
+              bodySmall: GoogleFonts.poppins(
                 fontSize: 9.sp,
                 fontWeight: FontWeight.w400,
                 color: kTextLightColor,
